@@ -13,13 +13,15 @@ def index():
     r = requests.get(url.format(city)).json()
     print(r)
     weather = {
-        'city' :city,
-        'temperature' :,
-        'description' :,
-        'icon' :
+                  'city' :city,
+                  'temperature' :r['main'] ['temp'],
+                  'description' :r ['weather'][0]['description'],
+                  'icon' :r ['weather'][0]['icon']
 
     }
     return render_template('weather.html')
 
-'''if __name__ ='__main__':
-    run app'''
+if __name__ =='__main__':
+    app.secret_key = 'super secret key'
+    print(app.secret_key)
+    app.run(debug=True)
